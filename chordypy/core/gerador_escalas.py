@@ -1,5 +1,5 @@
-from escalas import escala_default
-from tonalidade import return_tonality
+from chordypy.core.escalas import scale_def
+from chordypy.core.tonalidade import return_tonality
 
 
 def gerar_escala(tonica: str, tonalidade: str):
@@ -20,6 +20,7 @@ def gerar_escala(tonica: str, tonalidade: str):
         tonalidade = return_tonality(tonalidade)  # func return_tonality: retorna um dicionário com os intervalos (
         # Maiores ou menores) e a posição do primeiro semi-ton, usado para informar a enarmonia
         # Tonalidade - [[intervalos - dict],[enarmonia - int]]
+        escala_default = scale_def()
         pos_tonica = escala_default.index(tonica)  # dict escala_default = dicionario com todas as notas
     except ValueError as error:
         print(error)
@@ -33,4 +34,9 @@ def gerar_escala(tonica: str, tonalidade: str):
             base.append(escala_default[nota] + "/" + escala_default[nota + 1] + "b")
         else:
             base.append(escala_default[nota])
-    return base
+    print(base)
+
+tonica = str(input("Tônica: "))
+tonalidade = str(input('Tonalidade: '))
+
+gerar_escala(tonica, tonalidade)

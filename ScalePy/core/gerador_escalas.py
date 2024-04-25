@@ -1,5 +1,5 @@
-from ScalePy.core.escalas import scale_def
-from ScalePy.core.tonalidade import return_tonality
+from data.escalas import scale_def
+from data.tonalidade import return_tonality
 
 
 def gerar_escala(tonica: str, tonalidade: str):

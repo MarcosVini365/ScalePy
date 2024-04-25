@@ -1,5 +1,5 @@
-from chordypy.core.escalas import scale_def
-from chordypy.core.tonalidade import return_tonality
+from ScalePy.core.escalas import scale_def
+from ScalePy.core.tonalidade import return_tonality
 
 
 def gerar_escala(tonica: str, tonalidade: str):

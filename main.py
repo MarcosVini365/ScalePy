@@ -1,4 +1,4 @@
-import chordypy.core.gerador_escalas as gs
+import ScalePy.core.gerador_escalas as gs
 
 if __name__ == '__main__':
     while True:

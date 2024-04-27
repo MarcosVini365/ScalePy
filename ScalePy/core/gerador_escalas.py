@@ -20,23 +20,22 @@ def gerar_escala(tonica: str, tonalidade: str):
         tonalidade = return_tonality(tonalidade)  # func return_tonality: retorna um dicionário com os intervalos (
         # Maiores ou menores) e a posição do primeiro semi-ton, usado para informar a enarmonia
         # Tonalidade - [[intervalos - dict],[enarmonia - int]]
+
         escala_default = scale_def()
         pos_tonica = escala_default.index(tonica)  # dict escala_default = dicionario com todas as notas
     except ValueError as error:
         print(error)
         return
+
     for pos in tonalidade[0]:  # Monta a escala maior/menor com base aos dados fornecidos.
         nota = (pos_tonica + pos) % 12
         if pos == tonalidade[1][0] and escala_default[nota - 1] in escala_default[nota]:
+
             # Primeiro bloco valida a posição na escala
             # Segundo bloco valida, se a nota anterior e parecida a enarmonia.
             # ex: [A] == [A#] => true
+
             base.append(escala_default[nota] + "/" + escala_default[nota + 1] + "b")
         else:
             base.append(escala_default[nota])
-    print(base)
-
-tonica = str(input("Tônica: "))
-tonalidade = str(input('Tonalidade: '))
-
-gerar_escala(tonica, tonalidade)
+    return base

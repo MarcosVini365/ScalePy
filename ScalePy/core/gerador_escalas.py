@@ -1,3 +1,4 @@
+
 from data.escalas import scale_def
 from data.tonalidade import return_tonality
 

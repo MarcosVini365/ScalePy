@@ -27,32 +27,35 @@ def main(page: ft.page):
             page.update()
         else:
             lista_escala = gerar_escala(key, scale)
-
             titulo_principal.opacity = 100
             for i in lista_escala:
                 lista.append(
-                ft.ResponsiveRow(
-                    expand=True,
+                ft.Column(
+                    col={"xs": 3,"sm": 2, "md": 2, "xl": 1},
+                    spacing=0,
                     controls=[
-                        ft.Container(
-                            col={"sm": 9, "md": 10, "xl": 12},
-                            alignment=ft.alignment.center,
-                            content=ft.Text(i, color=ft.colors.BLACK, size=16, text_align=ft.alignment.center),
+                        ft.ElevatedButton(
                             width=70,
                             height=70,
-                            border_radius=6,
-                            bgcolor=ft.colors.WHITE,
-                            border=ft.border.all(2, ft.colors.BLACK12),
-                        ),]
+                            text=i,
+                            style=ft.ButtonStyle(
+                                shape=ft.ContinuousRectangleBorder(radius=30),
+
+                            )
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.CENTER,
                 )
             )
         page.update()
 
+    # POPUP: é apresentado quando não é selecionado uma tonalidade
     page.snack_bar = ft.SnackBar(
         content=ft.Text("Por favor, preencha todos os campos."),
         action="Ok!",
     )
 
+    # AppBar
     appbar = ft.AppBar(
         leading_width=40,
         title=ft.Text('ScalePy'),
@@ -66,22 +69,21 @@ def main(page: ft.page):
 
     )
 
-    titulo_principal = ft.Container(
-        content=ft.Text('Escala', color=ft.colors.ON_SURFACE, size=16),
-        alignment=ft.alignment.center,
-        opacity=0,
-    )
-
     select_tom = ft.Dropdown(
         width=100,
         hint_text="Key",
         options=[
             ft.dropdown.Option('C'),
+            ft.dropdown.Option('C#'),
             ft.dropdown.Option('D'),
+            ft.dropdown.Option('D#'),
             ft.dropdown.Option('E'),
             ft.dropdown.Option('F'),
+            ft.dropdown.Option('F#'),
             ft.dropdown.Option('G'),
+            ft.dropdown.Option('G#'),
             ft.dropdown.Option('A'),
+            ft.dropdown.Option('A#'),
             ft.dropdown.Option('B'),
         ],
     )
@@ -105,19 +107,29 @@ def main(page: ft.page):
         ]
     )
 
+    # Titulo referente ao setor
+    titulo_principal = ft.Container(
+        content=ft.Text('Escala', color=ft.colors.ON_SURFACE, size=16),
+        alignment=ft.alignment.center,
+        opacity=0,
+    )
+
     items=[
         select_tom,
         select_scale,
     ]
 
+    # Bloco de Seleção de Tonalidade e Escala
     bloco_01 = ft.Row(
         controls=items,
         alignment=ft.MainAxisAlignment.CENTER,
         spacing=20,
     )
 
-    bloco_02 = ft.Row(
+    # Bloco de Visualização da escala gerada
+    bloco_02 = ft.ResponsiveRow(
         alignment=ft.MainAxisAlignment.CENTER,
+        run_spacing=20,
         controls=lista
     )
 
